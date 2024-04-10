@@ -1,7 +1,9 @@
 # CSMC223-Processor-Simulator
 
-# Instruction Set Format:
-OPCODES:\
+**-Instruction Set Format-**
+
+**Opcodes:**
+
 00: mov - Loads data to a data register\
 01: store - Stores the data in the accumulator to the indicated memory address\
 02: jmp - Unconditional jump\
@@ -13,4 +15,17 @@ OPCODES:\
 08: jle - Jumps to a code segment if the flag is LESS THAN OR EQUAL\
 09: jge - Jumps to a code segment if the flag is GREATER THAN OR EQUAL\
 10: jz - Jumps to a code segment if the flag is ZERO\
-11: jnz - Jumps to a code segment if the flag is NOT ZERO\
+11: jnz - Jumps to a code segment if the flag is NOT ZERO
+
+**Registers:**
+
+Size: 32 bits\
+PC - Program Counter\
+AC - Accumulator\
+IR - Instruction Register\
+DR - Decoder Register (holder of memory address of the instruction to be executed)
+
+**Control Unit:**
+- A class that manipulates PC, AC, IR, & DR
+- Contains functions that operate on each opcode\
+**NOTE:** Make another class for instruction set that holds ISA; static. 
