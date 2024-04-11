@@ -1,3 +1,9 @@
-instruction Format: [Opcode | Operand1 | Operand2 | Destination]
-//Mas maganda ata kung hexadecimal ang opcodes natin para mas marami ang commands...
-//since kulang pa tayo ng arithmetic commands. 
+000 00 005 000 000
+001 00 00A 000 001
+002 00 019 000 002
+003 00 003 000 003
+004 03 000 000 000
+005 03 001 000 000
+006 03 002 000 000
+007 06 003 000 000
+008 01 000 000 000
