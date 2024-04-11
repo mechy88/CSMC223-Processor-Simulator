@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include "./memory.cpp"
 
 using namespace std;
 
@@ -27,7 +26,7 @@ class Process {
    private:
 
    public:
-      void start_process(Memory memory) {
+      void start_process(Memory &memory) {
          int registers[4] = {0};
          int ac = 0, mdr = 0;
          string mar = "000", opcode, op1, op2, destination;
@@ -46,7 +45,7 @@ class Process {
             } else if(opcode == "01") { //store
                //registers[getDestination(cell.destination)] = ac;
 
-               memory.store(cell.address, intToHex(ac));
+               memory.store(intToHex(ac), cell.address);
             } else if(opcode == "02") { //jmp
                string jumpTo = cell.destination;
 
@@ -78,4 +77,4 @@ class Process {
             }
          }
       }
-};
+   };
