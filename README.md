@@ -2,7 +2,7 @@
 
 **-Instruction Set Format-**
 
-**Opcodes:**
+**Opcodes:** (Hexadecimal)
 
 00: mov - Loads data to a data register\
 01: store - Stores the data in the accumulator to the indicated memory address\
@@ -14,8 +14,10 @@
 07: jne - Jumps to a code segment if the flag is NOT EQUAL\
 08: jle - Jumps to a code segment if the flag is LESS THAN OR EQUAL\
 09: jge - Jumps to a code segment if the flag is GREATER THAN OR EQUAL\
-10: jz - Jumps to a code segment if the flag is ZERO\
-11: jnz - Jumps to a code segment if the flag is NOT ZERO
+0A: jz - Jumps to a code segment if the flag is ZERO\
+0B: jnz - Jumps to a code segment if the flag is NOT ZERO\
+0C: add - Value of AC + value of memory address; result is stored in the AC\
+0D: sub - Value of AC - value of memory address; result is stored in AC
 
 **Registers:**
 
