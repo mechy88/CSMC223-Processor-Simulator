@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include "./memory.cpp"
 
 using namespace std;
@@ -16,18 +17,22 @@ int getDestination(string desti) {
       return 3;
 }
 
+string intToHex(int value) {
+    stringstream stream;
+    stream << uppercase << hex << value; 
+    return stream.str(); 
+}
+
 class Process {
    private:
 
    public:
-      void start_process() {
+      void start_process(Memory memory) {
          int registers[4] = {0};
          int ac = 0, mdr = 0;
          string mar = "000", opcode, op1, op2, destination;
 
-         /* Need q iaccess InstructionCell from the main.cpp thru this file para makuha ang data sa memory... HELP */
-
-         for(InstructionCell cell : mems1) {
+         for(InstructionCell cell : memory.mems1) {
 
             if(cell.address != mar) { continue; }
 
@@ -39,12 +44,14 @@ class Process {
             if(opcode == "00") { //mov
                registers[getDestination(cell.destination)] = stoi(cell.operand1, 0, 16);
             } else if(opcode == "01") { //store
-               registers[getDestination(cell.destination)] = ac;
+               //registers[getDestination(cell.destination)] = ac;
+
+               memory.store(cell.address, intToHex(ac));
             } else if(opcode == "02") { //jmp
                string jumpTo = cell.destination;
 
-               for(InstructionCell loc : mems1) { //logic error here sorry
-                  if(loc.destination = jumpTo) {
+               for(InstructionCell loc : memory.mems1) { 
+                  if(loc.destination == jumpTo) {
                      mar = jumpTo; 
                      break;
                   }
@@ -63,8 +70,12 @@ class Process {
                ac /= mdr;
             }
 
-            //mar should update here b4 next iteration
-            
+            for(InstructionCell cell : memory.mems1) {
+               if(stoi(mar) > stoi(cell.address)) {
+                  continue;
+               }
+                  mar = cell.address;
+            }
          }
       }
 };

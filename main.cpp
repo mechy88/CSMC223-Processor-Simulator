@@ -23,12 +23,15 @@ int main(){
 
     fileIn.open(fileName);
     /* Code that stores instructions to memory */
-    extern Memory memory;
+    Memory memory;
 
     while(fileIn >> address >> opcode >> op1 >> op2 >> destination){
       memory.mems1.push_back(InstructionCell(address, opcode, op1, op2, destination));
     }
     fileIn.close();
+
+    Process cpu;
+    cpu.start_process(memory);
 
     memory.printMemory();
     return 0;
