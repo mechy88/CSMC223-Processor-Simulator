@@ -1,0 +1,3 @@
+instruction Format: [Opcode | Operand1 | Operand2 | Destination]
+//Mas maganda ata kung hexadecimal ang opcodes natin para mas marami ang commands...
+//since kulang pa tayo ng arithmetic commands. 
