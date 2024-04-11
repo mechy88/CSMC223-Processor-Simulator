@@ -84,4 +84,14 @@ public:
         }
         
     }
+
+    void store(string add, string instance_data){
+        for(DataCell cell : mems2){
+            if(cell.address == add){
+                cell.data = instance_data;
+                return;
+            }
+        }
+        mems2.push_back(DataCell(add, instance_data));
+    }
 };
