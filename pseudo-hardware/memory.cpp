@@ -42,7 +42,7 @@ public:
     }
 
     string returnOutput(){
-        return (address + opcode + operand1 + operand2 + destination);
+        return (address + " " + opcode + operand1 + operand2 + destination);
     }
 };
 
@@ -63,7 +63,7 @@ public:
     }
     
     string returnOutput(){
-        return (address + data);
+        return (address + " " + data);
     }
 
 };
@@ -76,6 +76,7 @@ public:
     list<DataCell> mems2; //memory locations 800 - FFF
 
     void printMemory(){
+
         for(InstructionCell cell : mems1){
             cout << cell.returnOutput() << endl;
         }
@@ -93,5 +94,14 @@ public:
             }
         }
         mems2.push_back(DataCell(add, instance_data));
+    }
+
+    string retrieve(string address){
+        for(DataCell cell : mems2){
+            if(cell.data == address){
+                return cell.data;
+            }
+        }
+        return "###";
     }
 };

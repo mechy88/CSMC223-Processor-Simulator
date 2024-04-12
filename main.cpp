@@ -17,7 +17,7 @@ TODO:
 
 int main(){
     ifstream fileIn; 
-    string fileName = "instructionSet.txt";
+    string fileName = "trialRun.txt";
 
     string address, opcode, op1, op2, destination;
 
@@ -34,5 +34,6 @@ int main(){
     cpu.start_process(memory);
 
     memory.printMemory();
+    cpu.printRegisters();
     return 0;
 }
