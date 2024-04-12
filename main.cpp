@@ -2,7 +2,6 @@
 #include <string>
 #include <map>
 #include <list>
-#include "./pseudo-hardware/memory.cpp"
 #include "./pseudo-hardware/cpu.cpp"
 #include <fstream>
 

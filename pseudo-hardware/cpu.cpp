@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include "memory.cpp"
 
 using namespace std;
 
@@ -43,7 +44,7 @@ class Process {
 
          for(InstructionCell cell : memory.mems1) {
 
-            if(cell.address != mar) { continue; } //skips memory addresses when jmp opcode is executed
+            //if(cell.address != mar) { continue; } //skips memory addresses when jmp opcode is executed
 
             opcode = cell.opcode;
             op1 = cell.operand1;
