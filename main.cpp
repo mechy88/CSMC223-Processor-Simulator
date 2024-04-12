@@ -16,13 +16,17 @@ int main(){
     fileIn.open(fileName);
     /* Code that stores instructions to memory */
     Memory memory;
+    Process cpu;
 
     while(fileIn >> address >> opcode >> op1 >> op2 >> destination){
       memory.mems1.push_back(InstructionCell(address, opcode, op1, op2, destination));
     }
     fileIn.close();
+    memory.printMemory();
+    cpu.printRegisters(cpu);
+    
+    cout << endl;
 
-    Process cpu;
     cpu.start_process(memory);
 
     memory.printMemory();
