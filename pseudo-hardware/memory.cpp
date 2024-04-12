@@ -87,12 +87,14 @@ public:
     }
 
     void store(string add, string instance_data){
-        for(DataCell cell : mems2){
+        /* for(DataCell cell : mems2){
             if(cell.address == add){
                 cell.data = instance_data;
                 return;
             }
-        }
+        } */
+
+        cout << "Storing in memory: " << add << " " << instance_data << endl; //Checker if store is successfully called
         mems2.push_back(DataCell(add, instance_data));
     }
 

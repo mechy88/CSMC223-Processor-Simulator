@@ -8,13 +8,6 @@
 
 using namespace std;
 
-/*
-TODO:
-- Implement Memory
-- Make print function to check memory contents
-*/
-
-
 int main(){
     ifstream fileIn; 
     string fileName = "trialRun.txt";
@@ -34,6 +27,6 @@ int main(){
     cpu.start_process(memory);
 
     memory.printMemory();
-    cpu.printRegisters();
+    cpu.printRegisters(cpu);
     return 0;
 }

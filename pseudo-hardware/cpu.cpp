@@ -6,7 +6,7 @@
 using namespace std;
 
 //converts string to int that's used just for array indexing
-int getDestination(string desti) {
+int destinationToInt(string desti) {
    if(desti == "000")
       return 0;
    else if(desti == "001") 
@@ -38,11 +38,12 @@ class Process {
       int registers[4] = {0};
       int ac = 0, mdr = 0;
       string mar = "000", opcode, op1, op2, destination;
+
       void start_process(Memory &memory) {
 
          for(InstructionCell cell : memory.mems1) {
 
-            if(cell.address != mar) { continue; }
+            if(cell.address != mar) { continue; } //skips memory addresses when jmp opcode is executed
 
             opcode = cell.opcode;
             op1 = cell.operand1;
@@ -50,11 +51,8 @@ class Process {
             destination = cell.destination;
 
             if(opcode == "00") { //mov register to register movement
-               registers[getDestination(cell.destination)] = stoi(cell.operand1, 0, 16);
+               registers[destinationToInt(destination)] = stoi(op1, 0, 16);
             } else if(opcode == "01") { //store
-               //registers[getDestination(cell.destination)] = ac;
-
-               //
                memory.store(cell.address, formatString(intToHex(ac), 11));
             } else if(opcode == "02") { //jmp
                string jumpTo = cell.destination;
@@ -67,16 +65,16 @@ class Process {
                   }
                }
             } else if(opcode == "03") { //add
-               mdr = stoi(op1);
+               mdr = stoi(op1, 0, 16);
                ac += mdr;
             } else if(cell.opcode == "04") { //sub
-               mdr = stoi(op1);
+               mdr = stoi(op1, 0, 16);
                ac -= mdr;
             } else if(opcode == "05") { //mul
-               mdr = stoi(op1);
+               mdr = stoi(op1, 0, 16);
                ac *= mdr;
             } else if(opcode == "06") { //div
-               mdr = stoi(op1);
+               mdr = stoi(op1, 0, 16);
                ac /= mdr;
             } else if(opcode == "07"){//loads data from memory location to a general purpose register
                registers[stoi(cell.destination)] = stoi(memory.retrieve(cell.operand1));
@@ -87,17 +85,18 @@ class Process {
                   continue;
                }
                   mar = cell.address;
+                  break;
             }
          }
       }
 
-      void printRegisters(){
-         cout << "Register1 " << registers[1] << endl;
-         cout << "Register2 " << registers[2] << endl;
-         cout << "Register3 " << registers[3] << endl;
-         cout << "Register4 " << registers[4] << endl;
-         cout << "ac " << ac << endl;
-         cout << "mdr " << mdr << endl;
-         cout << "mar " << mar << endl;
+      void printRegisters(Process &cpu){
+         cout << "Register1 " << cpu.registers[1] << endl;
+         cout << "Register2 " << cpu.registers[2] << endl;
+         cout << "Register3 " << cpu.registers[3] << endl;
+         cout << "Register4 " << cpu.registers[4] << endl;
+         cout << "ac " << cpu.ac << endl;
+         cout << "mdr " << cpu.mdr << endl;
+         cout << "mar " << cpu.mar << endl;
       }
    };
