@@ -22,6 +22,9 @@ int main(){
       memory.mems1.push_back(InstructionCell(address, opcode, op1, op2, destination));
     }
     fileIn.close();
+    memory.printMemory();
+
+    cout << endl;
 
     Process cpu;
     cpu.start_process(memory);

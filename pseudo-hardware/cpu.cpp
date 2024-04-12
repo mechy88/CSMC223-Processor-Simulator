@@ -43,7 +43,7 @@ class Process {
 
          for(InstructionCell cell : memory.mems1) {
 
-            if(cell.address != mar) { continue; } //skips memory addresses when jmp opcode is executed
+            // if(cell.address != mar) { continue; } //skips memory addresses when jmp opcode is executed
 
             opcode = cell.opcode;
             op1 = cell.operand1;
@@ -87,6 +87,8 @@ class Process {
                   mar = cell.address;
                   break;
             }
+
+            cout << "did it loop" << endl;
          }
       }
 
